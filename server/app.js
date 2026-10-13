@@ -1,4 +1,7 @@
+
 require("dotenv").config();
+const FRONTEND_URL =
+  process.env.FRONTEND_URL || "http://localhost:5173";
 const dns = require("node:dns");
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 const { GoogleGenAI } = require("@google/genai");
@@ -23,14 +26,14 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 // MIDDLEWARE
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: FRONTEND_URL
 }));
 app.use(express.json());
 
 // SOCKET.IO SETUP
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: FRONTEND_URL,
         methods: ["GET", "POST"]
     }
 });
