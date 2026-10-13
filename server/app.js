@@ -17,8 +17,8 @@ const authMiddleware = require("./middleware/auth");
 
 const app = express();
 const server = http.createServer(app);
+const PORT = process.env.PORT || 5000;
 
-const PORT = 5000;
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // MIDDLEWARE
