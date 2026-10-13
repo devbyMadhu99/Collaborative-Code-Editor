@@ -6,8 +6,10 @@ import AuthForm from "./components/AuthForm";
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:5000";
 
-const socket = io("http://localhost:5000", {
+const socket = io(API_URL, {
   autoConnect: false,
 });
 
@@ -67,7 +69,7 @@ useEffect(() => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/${isLogin ? "login" : "register"}`,
+        `${API_URL}/${isLogin ? "login" : "register"}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -167,7 +169,7 @@ function handleCodeChange(value) {
     setSaving(true);
 
     try {
-      const response = await fetch("http://localhost:5000/save-code", {
+      const response = await fetch(`${API_URL}/save-code`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -192,7 +194,7 @@ function handleCodeChange(value) {
 
   async function loadCode() {
     try {
-      const response = await fetch("http://localhost:5000/saved-code", {
+      const response = await fetch(`${API_URL}/saved-code`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -245,7 +247,7 @@ function handleCodeChange(value) {
     setOutput("Running code...");
 
     try {
-      const response = await fetch("http://localhost:5000/run-code", {
+        const response = await fetch(`${API_URL}/run-code`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -284,7 +286,7 @@ async function handleAI(action) {
   );
 
   try {
-    const response = await fetch("http://localhost:5000/ai-assistant", {
+       const response = await fetch(`${API_URL}/ai-assistant`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
