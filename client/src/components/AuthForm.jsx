@@ -15,11 +15,18 @@ function AuthForm({
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <h1 className="auth-title">
-          Collaborative Code Editor
-        </h1>
+        
+<h1 className="auth-title">
+  &lt;CodeSync /&gt;
+</h1>
 
-        <h2>{isLogin ? "Login" : "Register"}</h2>
+<p className="auth-subtitle">
+  {isLogin
+    ? "Welcome back! Sign in to continue coding."
+    : "Create your account and start coding together."}
+</p>
+
+<h2>{isLogin ? "Login" : "Register"}</h2>
 
         <form onSubmit={handleAuth} className="auth-form">
           {!isLogin && (

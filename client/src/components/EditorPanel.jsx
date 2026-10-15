@@ -9,8 +9,10 @@ function EditorPanel({
   handleLanguageChange,
 }) {
   return (
-    <>
-      <div>
+    <section className="editor-section">
+      <div className="editor-heading">
+        <h2>Code Editor</h2>
+
         <select
           value={language}
           onChange={(e) => handleLanguageChange(e.target.value)}
@@ -22,19 +24,21 @@ function EditorPanel({
         </select>
       </div>
 
-      <Editor
-        height="400px"
-        language={language}
-        value={code}
-        onChange={handleCodeChange}
-        theme="vs-dark"
-        options={{
-          minimap: { enabled: false },
-          fontSize: 14,
-          automaticLayout: true,
-        }}
-      />
-    </>
+      <div className="monaco-container">
+        <Editor
+          height="400px"
+          language={language}
+          value={code}
+          onChange={handleCodeChange}
+          theme="vs-dark"
+          options={{
+            minimap: { enabled: false },
+            fontSize: 14,
+            automaticLayout: true,
+          }}
+        />
+      </div>
+    </section>
   );
 }
 
